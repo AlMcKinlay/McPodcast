@@ -52,9 +52,9 @@
     ]
   },
   "devDependencies": {
-    "concurrently": "^5.2.0",
-    "cross-env": "^7.0.2",
-    "electron": "^9.0.5",
-    "electron-builder": "^22.7.0"
+    "concurrently": "5.2.0",
+    "cross-env": "7.0.2",
+    "electron": "9.0.5",
+    "electron-builder": "22.7.0"
   }
 }
