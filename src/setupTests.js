@@ -10,7 +10,7 @@ window.require = (module) => {{
     } else {
         return {
             remote: {
-                require: require
+                require: (electronModule) => require(`../electron/${electronModule}`)
             }
         }
     }
