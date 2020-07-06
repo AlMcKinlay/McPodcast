@@ -14,7 +14,12 @@ function createWindow() {
         webPreferences: { nodeIntegration: true }
     });
 
-    mainWindow.loadURL('http://localhost:3000');
+    const startUrl = process.env.ELECTRON_START_URL || url.format({
+        pathname: path.join(__dirname, '/../build/index.html'),
+        protocol: 'file:',
+        slashes: true
+    });
+    mainWindow.loadURL(startUrl);
 
     // Open the DevTools.
     if(process.argv.includes("dev")) {

@@ -15,7 +15,7 @@
   },
   "scripts": {
     "dev": "concurrently 'npm:react' 'npm:electron:dev'",
-    "electron:dev": "electron . dev",
+    "electron:dev": "cross-env ELECTRON_START_URL=http://localhost:3000 electron . dev",
     "react": "cross-env BROWSER=none react-scripts start",
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -63,5 +63,6 @@
     "cross-env": "7.0.2",
     "electron": "9.0.5",
     "electron-builder": "22.7.0"
-  }
+  },
+  "homepage": "./"
 }
