@@ -7,6 +7,9 @@ const Dropzone = styled.div`
   height: 100%;
   padding: 10px;
   border: 2px dashed;
+  display: grid;
+  justify-items: center;
+  align-items: center;
 `;
 
 export default function MyDropzone({selectFile}) {

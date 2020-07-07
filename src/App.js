@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
-import './App.css';
-import Dropzone from "./Dropzone";
-import FileView from "./FileView";
+import Dropzone from "./components/Dropzone";
+import FileView from "./fileEditor/FileView";
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
