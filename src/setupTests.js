@@ -2,16 +2,18 @@
 // allows you to do things like:
 // expect(element).toHaveTextContent(/react/i)
 // learn more: https://github.com/testing-library/jest-dom
-import '@testing-library/jest-dom/extend-expect';
+import "@testing-library/jest-dom/extend-expect";
 
-window.require = (module) => {{
-    if (module !== "electron") {
-        return require(module);
-    } else {
-        return {
-            remote: {
-                require: (electronModule) => require(`../electron/${electronModule}`)
-            }
-        }
-    }
-}};
+window.require = (module) => {
+	{
+		if (module !== "electron") {
+			return require(module);
+		} else {
+			return {
+				remote: {
+					require: (electronModule) => require(`../electron/${electronModule}`),
+				},
+			};
+		}
+	}
+};

@@ -1,68 +1,71 @@
 {
-  "name": "mcpodcast",
-  "version": "0.1.1",
-  "main": "electron/index.js",
-  "dependencies": {
-    "@testing-library/jest-dom": "^5.0.0",
-    "@testing-library/react": "^10.0.0",
-    "@testing-library/user-event": "^12.0.0",
-    "node-id3": "^0.1.17",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-dropzone": "^11.0.1",
-    "react-scripts": "3.4.1",
-    "styled-components": "^5.1.1"
-  },
-  "scripts": {
-    "dev": "concurrently 'npm:react' 'npm:electron:dev'",
-    "electron:dev": "cross-env ELECTRON_START_URL=http://localhost:3000 electron . dev",
-    "react": "cross-env BROWSER=none react-scripts start",
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "postinstall": "electron-builder install-app-deps"
-  },
-  "build": {
-    "appId": "com.yamanickill.mcpodcast",
-    "productName": "McPodcast",
-    "mac": {
-      "category": "public.app-category.utilities"
-    },
-    "dmg": {
-      "icon": false
-    },
-    "linux": {
-      "target": [
-        "AppImage"
-      ],
-      "category": "Utility"
-    },
-    "extraMetadata": {
-      "main": "electron/index.js"
-    },
-    "files": ["electron/**/*"]
-  },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
-  "devDependencies": {
-    "concurrently": "5.2.0",
-    "cross-env": "7.0.2",
-    "electron": "9.1.0",
-    "electron-builder": "22.7.0"
-  },
-  "homepage": "./"
+	"name": "mcpodcast",
+	"version": "0.1.1",
+	"main": "electron/index.js",
+	"dependencies": {
+		"@testing-library/jest-dom": "^5.0.0",
+		"@testing-library/react": "^10.0.0",
+		"@testing-library/user-event": "^12.0.0",
+		"node-id3": "^0.1.17",
+		"react": "^16.13.1",
+		"react-dom": "^16.13.1",
+		"react-dropzone": "^11.0.1",
+		"react-scripts": "3.4.1",
+		"styled-components": "^5.1.1"
+	},
+	"scripts": {
+		"dev": "concurrently 'npm:react' 'npm:electron:dev'",
+		"electron:dev": "cross-env ELECTRON_START_URL=http://localhost:3000 electron . dev",
+		"react": "cross-env BROWSER=none react-scripts start",
+		"start": "react-scripts start",
+		"build": "react-scripts build",
+		"test": "react-scripts test",
+		"eject": "react-scripts eject",
+		"postinstall": "electron-builder install-app-deps"
+	},
+	"build": {
+		"appId": "com.yamanickill.mcpodcast",
+		"productName": "McPodcast",
+		"mac": {
+			"category": "public.app-category.utilities"
+		},
+		"dmg": {
+			"icon": false
+		},
+		"linux": {
+			"target": [
+				"AppImage"
+			],
+			"category": "Utility"
+		},
+		"extraMetadata": {
+			"main": "electron/index.js"
+		},
+		"files": [
+			"electron/**/*"
+		]
+	},
+	"eslintConfig": {
+		"extends": "react-app"
+	},
+	"browserslist": {
+		"production": [
+			">0.2%",
+			"not dead",
+			"not op_mini all"
+		],
+		"development": [
+			"last 1 chrome version",
+			"last 1 firefox version",
+			"last 1 safari version"
+		]
+	},
+	"devDependencies": {
+		"concurrently": "5.2.0",
+		"cross-env": "7.0.2",
+		"electron": "9.1.0",
+		"electron-builder": "22.7.0",
+		"prettier": "^2.0.5"
+	},
+	"homepage": "./"
 }
