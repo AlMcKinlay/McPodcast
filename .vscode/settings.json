@@ -11,7 +11,10 @@
 		"yarn.lock": true,
 		".github": true,
 		".vscode": true,
-		"node_modules": true
+		"node_modules": true,
+		".prettierignore": true,
+		".prettierrc.json": true,
+		".gitignore": true
 	},
 	"explorerExclude.backup": null,
 	"editor.formatOnSave": true
