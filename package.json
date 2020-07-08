@@ -12,7 +12,8 @@
 		"react-dom": "^16.13.1",
 		"react-dropzone": "^11.0.1",
 		"react-scripts": "3.4.1",
-		"styled-components": "^5.1.1"
+		"styled-components": "^5.1.1",
+		"tailwindcss": "^1.4.6"
 	},
 	"scripts": {
 		"dev": "concurrently 'npm:react' 'npm:electron:dev'",
@@ -66,7 +67,8 @@
 		"cross-env": "7.0.2",
 		"electron": "9.1.1",
 		"electron-builder": "22.8.0",
-		"prettier": "2.0.5"
+		"prettier": "2.0.5",
+		"tailwind.macro": "^1.0.0-alpha.10"
 	},
 	"homepage": "./"
 }
