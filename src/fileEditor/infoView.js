@@ -19,10 +19,6 @@ const Text = styled.input`
 	${tw`appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white`};
 `;
 
-const PodcastImage = styled.img`
-	width: 100%;
-`;
-
 export default function InfoView({ info }) {
 	if (!info.encodedBy) {
 		info.encodedBy = "McPodcast";
