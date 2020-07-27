@@ -9,15 +9,34 @@ const createVideo = (audioPath) => {
 	video.getVideo(audioPath);
 };
 
-const Text = styled.input`
-	${tw`appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white`};
+const ButtonWrapper = styled.div`
+	${tw`w-full`}
+	display: grid;
+	justify-items: center;
 `;
 
-export default function InfoView({ path, setTags }) {
+const Button = styled.button`
+	${tw`font-bold py-2 px-4 border rounded w-1/2 self-center mb-3`};
+`;
+
+const PrimaryButton = styled(Button)`
+	${tw`bg-blue-500 hover:bg-blue-700 text-white border-blue-700`};
+`;
+
+const Wrapper = styled.div`
+	display: grid;
+	align-items: end;
+`;
+
+export default function Actions({ path, setTags }) {
 	return (
-		<div>
-			<button onClick={() => setTags()}>Export Tags</button>
-			<button onClick={() => createVideo(path)}>Export Video</button>
-		</div>
+		<Wrapper>
+			<ButtonWrapper>
+				<Button onClick={() => createVideo(path)}>Export Video</Button>
+			</ButtonWrapper>
+			<ButtonWrapper>
+				<PrimaryButton onClick={() => setTags()}>Export Tags</PrimaryButton>
+			</ButtonWrapper>
+		</Wrapper>
 	);
 }

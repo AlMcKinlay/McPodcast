@@ -9,9 +9,13 @@ const id3 = electron.remote.require("./id3");
 const Wrapper = styled.div`
 	display: grid;
 	grid-template-columns: 1fr 2fr 1fr;
+	height: 100%;
 `;
 
-const Info = styled(InfoView)``;
+const RightPanel = styled.div`
+	display: grid;
+	grid-template-rows: 4fr 1fr;
+`;
 
 export default function FileView({ file: { path } }) {
 	const [tags, setTags] = useState(undefined);
@@ -22,13 +26,14 @@ export default function FileView({ file: { path } }) {
 
 	return (
 		<Wrapper>
-			<Info info={tags} setInfo={(tags) => setTags(tags)}></Info>
+			<InfoView info={tags} setInfo={(tags) => setTags(tags)}></InfoView>
 			<div>
 				<p>Chapters: {tags.chapter?.length || 0}</p>
 			</div>
-			<div>
+			<RightPanel>
+				<div></div>
 				<Actions path={path} setTags={() => id3.setTags(path, tags)}></Actions>
-			</div>
+			</RightPanel>
 		</Wrapper>
 	);
 }

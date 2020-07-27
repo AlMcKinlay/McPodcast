@@ -3,16 +3,20 @@ import tw from "tailwind.macro";
 import styled from "styled-components";
 import Artwork from "./artwork";
 
-const Form = styled.form`
-	${tw`w-full max-w-lg`};
-`;
+const timestampFormat = "HH:MM:SS";
+
+const Form = styled.form``;
 
 const Wrapper = styled.div`
-	${tw`flex flex-wrap mb-6`};
+	display: grid;
+	grid-auto-rows: 1fr 1fr;
+	height: 100%;
 `;
 
-const ItemWrapper = styled.div`
-	${tw`w-full px-3 mb-6 md:mb-0`};
+const ItemWrapper = styled.div``;
+
+const TextWrapper = styled.div`
+	align-self: end;
 `;
 
 const Text = styled.input`
@@ -27,50 +31,52 @@ export default function InfoView({ info, setInfo }) {
 		<Form>
 			<Wrapper>
 				<Artwork image={info.image}></Artwork>
-				<ItemWrapper>
-					<Text
-						id="grid-first-name"
-						type="text"
-						placeholder="Podcast Title"
-						value={info.title || ""}
-						onChange={(e) => setInfo({ ...info, title: e.target.value })}
-					/>
-				</ItemWrapper>
-				<ItemWrapper>
-					<Text
-						id="grid-first-name"
-						type="text"
-						placeholder="Podcast"
-						value={info.album || ""}
-						onChange={(e) => setInfo({ ...info, album: e.target.value })}
-					/>
-				</ItemWrapper>
-				<ItemWrapper>
-					<Text
-						id="grid-first-name"
-						type="text"
-						placeholder="Encoded By"
-						value={info.encodedBy || ""}
-						onChange={(e) => setInfo({ ...info, encodedBy: e.target.value })}
-					/>
-				</ItemWrapper>
-				<ItemWrapper>
-					<Text
-						id="grid-first-name"
-						type="text"
-						placeholder="Length"
-						value={info.length || 0}
-						onChange={(e) => setInfo({ ...info, length: e.target.value })}
-					/>
-				</ItemWrapper>
-				{/* <ItemWrapper>
-					<Text
-						id="grid-first-name"
-						type="text"
-						placeholder="Year"
-						value={info.year}
-					/>
-				</ItemWrapper> */}
+				<TextWrapper>
+					<ItemWrapper>
+						<Text
+							id="grid-first-name"
+							type="text"
+							placeholder="Podcast Title"
+							value={info.title || ""}
+							onChange={(e) => setInfo({ ...info, title: e.target.value })}
+						/>
+					</ItemWrapper>
+					<ItemWrapper>
+						<Text
+							id="grid-first-name"
+							type="text"
+							placeholder="Podcast"
+							value={info.album || ""}
+							onChange={(e) => setInfo({ ...info, album: e.target.value })}
+						/>
+					</ItemWrapper>
+					<ItemWrapper>
+						<Text
+							id="grid-first-name"
+							type="text"
+							placeholder="Encoded By"
+							value={info.encodedBy || ""}
+							onChange={(e) => setInfo({ ...info, encodedBy: e.target.value })}
+						/>
+					</ItemWrapper>
+					<ItemWrapper>
+						<Text
+							id="grid-first-name"
+							type="text"
+							placeholder="Length"
+							value={info.length || timestampFormat}
+							onChange={(e) => setInfo({ ...info, length: e.target.value })}
+						/>
+					</ItemWrapper>
+					{/* <ItemWrapper>
+						<Text
+							id="grid-first-name"
+							type="text"
+							placeholder="Year"
+							value={info.year}
+						/>
+					</ItemWrapper> */}
+				</TextWrapper>
 			</Wrapper>
 		</Form>
 	);
