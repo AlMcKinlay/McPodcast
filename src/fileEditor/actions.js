@@ -5,8 +5,8 @@ import styled from "styled-components";
 const electron = window.require("electron");
 const video = electron.remote.require("./video");
 
-const createVideo = (audioPath) => {
-	video.getVideo(audioPath);
+const createVideo = (audioPath, image) => {
+	video.getVideo(audioPath, image.imageBuffer.toString("base64"));
 };
 
 const ButtonWrapper = styled.div`
@@ -28,11 +28,11 @@ const Wrapper = styled.div`
 	align-items: end;
 `;
 
-export default function Actions({ path, setTags }) {
+export default function Actions({ path, setTags, image }) {
 	return (
 		<Wrapper>
 			<ButtonWrapper>
-				<Button onClick={() => createVideo(path)}>Export Video</Button>
+				<Button onClick={() => createVideo(path, image)}>Export Video</Button>
 			</ButtonWrapper>
 			<ButtonWrapper>
 				<PrimaryButton onClick={() => setTags()}>Export Tags</PrimaryButton>

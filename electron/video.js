@@ -1,11 +1,21 @@
 const ffmpeg = require("fluent-ffmpeg");
+const fs = require("fs");
 
-exports.getVideo = (file) => {
+ffmpeg.setFfmpegPath(".\\ffmpeg");
+ffmpeg.setFfprobePath(".\\ffprobe");
+
+exports.getVideo = (file, image) => {
+	fs.writeFile(
+		"tmpvideoimagefile.png",
+		image.split(";base64,").pop(),
+		{ encoding: "base64" },
+		function (err) {
+			console.log("File created");
+		}
+	);
 	var proc = ffmpeg()
 		.addInput(file)
-		.addInput(
-			"/home/al/GDrive/Podcasts/ths/Assets/HarvestSeason-Final-Social-01.png"
-		)
+		.addInput("tmpvideoimagefile.png")
 		.loop(6348)
 		.fps(1)
 		.audioBitrate("256k")
@@ -20,5 +30,5 @@ exports.getVideo = (file) => {
 		.on("progress", function (progress) {
 			console.log("Processing: " + progress.percent + "% done");
 		})
-		.save("~/test.mp4");
+		.save(".\\test.mp4");
 };
