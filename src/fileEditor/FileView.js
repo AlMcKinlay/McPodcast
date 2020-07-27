@@ -19,27 +19,18 @@ const Info = styled(InfoView)``;
 export default function FileView({ file: { path } }) {
 	const [tags, setTags] = useState(undefined);
 	if (tags === undefined) {
-		setTags(id3.getTags(path));
+		setTags(id3.getTags(path) || {});
 	}
 
 	if (tags === undefined) {
 		return <div>Loading...</div>;
 	}
 
-	if (tags === false) {
-		return (
-			<>
-				<div>Oh no, no tags</div>
-				<button onClick={() => createVideo(path)}>Export Video</button>
-			</>
-		);
-	}
-
 	return (
 		<Wrapper>
 			<Info info={tags}></Info>
 			<div>
-				<p>Chapters: {tags.chapter.length}</p>
+				<p>Chapters: {tags.chapter?.length || 0}</p>
 
 				<button onClick={() => createVideo(path)}>Export Video</button>
 			</div>

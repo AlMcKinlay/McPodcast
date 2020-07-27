@@ -1,13 +1,14 @@
 import React from "react";
 import tw from "tailwind.macro";
 import styled from "styled-components";
+import Artwork from "./artwork";
 
 const Form = styled.form`
 	${tw`w-full max-w-lg`};
 `;
 
 const Wrapper = styled.div`
-	${tw`flex flex-wrap -mx-3 mb-6`};
+	${tw`flex flex-wrap mb-6`};
 `;
 
 const ItemWrapper = styled.div`
@@ -29,13 +30,7 @@ export default function InfoView({ info }) {
 	return (
 		<Form>
 			<Wrapper>
-				<PodcastImage
-					src={
-						"data:image/jpeg;base64," +
-						info.image.imageBuffer.toString("base64")
-					}
-					alt="Podcast Logo"
-				></PodcastImage>
+				<Artwork image={info.image}></Artwork>
 				<ItemWrapper>
 					<Text
 						id="grid-first-name"

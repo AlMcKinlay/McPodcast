@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Dropzone from "./components/Dropzone";
+import Dropzone from "./components/PodcastDropzone";
 import FileView from "./fileEditor/FileView";
 import styled from "styled-components";
 
