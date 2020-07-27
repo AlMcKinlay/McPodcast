@@ -19,7 +19,7 @@ const Text = styled.input`
 	${tw`appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white`};
 `;
 
-export default function InfoView({ info }) {
+export default function InfoView({ info, setInfo }) {
 	if (!info.encodedBy) {
 		info.encodedBy = "McPodcast";
 	}
@@ -32,7 +32,8 @@ export default function InfoView({ info }) {
 						id="grid-first-name"
 						type="text"
 						placeholder="Podcast Title"
-						value={info.title}
+						value={info.title || ""}
+						onChange={(e) => setInfo({ ...info, title: e.target.value })}
 					/>
 				</ItemWrapper>
 				<ItemWrapper>
@@ -40,7 +41,8 @@ export default function InfoView({ info }) {
 						id="grid-first-name"
 						type="text"
 						placeholder="Podcast"
-						value={info.album}
+						value={info.album || ""}
+						onChange={(e) => setInfo({ ...info, album: e.target.value })}
 					/>
 				</ItemWrapper>
 				<ItemWrapper>
@@ -48,7 +50,8 @@ export default function InfoView({ info }) {
 						id="grid-first-name"
 						type="text"
 						placeholder="Encoded By"
-						value={info.encodedBy}
+						value={info.encodedBy || ""}
+						onChange={(e) => setInfo({ ...info, encodedBy: e.target.value })}
 					/>
 				</ItemWrapper>
 				<ItemWrapper>
@@ -56,7 +59,8 @@ export default function InfoView({ info }) {
 						id="grid-first-name"
 						type="text"
 						placeholder="Length"
-						value={info.length}
+						value={info.length || 0}
+						onChange={(e) => setInfo({ ...info, length: e.target.value })}
 					/>
 				</ItemWrapper>
 				{/* <ItemWrapper>

@@ -4,7 +4,7 @@ import styled from "styled-components";
 import Actions from "./actions";
 
 const electron = window.require("electron");
-const id3 = electron.remote.require("./getID3Tags");
+const id3 = electron.remote.require("./id3");
 
 const Wrapper = styled.div`
 	display: grid;
@@ -22,12 +22,12 @@ export default function FileView({ file: { path } }) {
 
 	return (
 		<Wrapper>
-			<Info info={tags}></Info>
+			<Info info={tags} setInfo={(tags) => setTags(tags)}></Info>
 			<div>
 				<p>Chapters: {tags.chapter?.length || 0}</p>
 			</div>
 			<div>
-				<Actions path={path}></Actions>
+				<Actions path={path} setTags={() => id3.setTags(path, tags)}></Actions>
 			</div>
 		</Wrapper>
 	);
