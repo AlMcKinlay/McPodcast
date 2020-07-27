@@ -30,7 +30,19 @@ export default function InfoView({ info, setInfo }) {
 	return (
 		<Form>
 			<Wrapper>
-				<Artwork image={info.image}></Artwork>
+				<Artwork
+					image={info.image}
+					setImage={(base64) =>
+						setInfo({
+							...info,
+							image: {
+								mime: "jpeg",
+								type: { id: 3, name: "front cover" },
+								imageBuffer: base64,
+							},
+						})
+					}
+				></Artwork>
 				<TextWrapper>
 					<ItemWrapper>
 						<Text
