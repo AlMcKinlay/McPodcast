@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import InfoView from "./infoView";
 const electron = window.require("electron");
 const id3 = electron.remote.require("./getID3Tags");
 const video = electron.remote.require("./video");
@@ -28,15 +29,8 @@ export default function FileView({ file: { path } }) {
 
 	return (
 		<div>
-			<p>Title: {tags.title}</p>
-			<p>Artist: {tags.artist}</p>
-			<p>Album: {tags.album}</p>
+			<InfoView info={tags}></InfoView>
 			<p>Chapters: {tags.chapter.length}</p>
-			<p>Length: {tags.length}</p>
-			<p>Year: {tags.year}</p>
-			<p>Genre: {tags.genre}</p>
-			<p>Encoded By: {tags.encodedBy}</p>
-			<p>Image: {tags.image.mime}</p>
 
 			<button onClick={() => createVideo(path)}>Export Video</button>
 		</div>
