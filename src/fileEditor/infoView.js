@@ -11,7 +11,7 @@ const Wrapper = styled.div`
 `;
 
 const ItemWrapper = styled.div`
-	${tw`w-full md:w-1/2 px-3 mb-6 md:mb-0`};
+	${tw`w-full px-3 mb-6 md:mb-0`};
 `;
 
 const Text = styled.input`
@@ -29,6 +29,13 @@ export default function InfoView({ info }) {
 	return (
 		<Form>
 			<Wrapper>
+				<PodcastImage
+					src={
+						"data:image/jpeg;base64," +
+						info.image.imageBuffer.toString("base64")
+					}
+					alt="Podcast Logo"
+				></PodcastImage>
 				<ItemWrapper>
 					<Text
 						id="grid-first-name"
@@ -61,13 +68,6 @@ export default function InfoView({ info }) {
 						value={info.length}
 					/>
 				</ItemWrapper>
-				<PodcastImage
-					src={
-						"data:image/jpeg;base64," +
-						info.image.imageBuffer.toString("base64")
-					}
-					alt="Podcast Logo"
-				></PodcastImage>
 				{/* <ItemWrapper>
 					<Text
 						id="grid-first-name"

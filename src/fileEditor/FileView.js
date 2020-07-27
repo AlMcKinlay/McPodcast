@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import InfoView from "./infoView";
+import styled from "styled-components";
 const electron = window.require("electron");
 const id3 = electron.remote.require("./getID3Tags");
 const video = electron.remote.require("./video");
@@ -7,6 +8,13 @@ const video = electron.remote.require("./video");
 const createVideo = (audioPath) => {
 	video.getVideo(audioPath);
 };
+
+const Wrapper = styled.div`
+	display: grid;
+	grid-template-columns: 1fr 2fr;
+`;
+
+const Info = styled(InfoView)``;
 
 export default function FileView({ file: { path } }) {
 	const [tags, setTags] = useState(undefined);
@@ -28,11 +36,13 @@ export default function FileView({ file: { path } }) {
 	}
 
 	return (
-		<div>
-			<InfoView info={tags}></InfoView>
-			<p>Chapters: {tags.chapter.length}</p>
+		<Wrapper>
+			<Info info={tags}></Info>
+			<div>
+				<p>Chapters: {tags.chapter.length}</p>
 
-			<button onClick={() => createVideo(path)}>Export Video</button>
-		</div>
+				<button onClick={() => createVideo(path)}>Export Video</button>
+			</div>
+		</Wrapper>
 	);
 }
