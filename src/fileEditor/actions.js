@@ -3,7 +3,6 @@ import tw from "tailwind.macro";
 import styled from "styled-components";
 import { Button, PrimaryButton } from "../components/Buttons";
 import { sideEffect } from "../utils";
-import { Spinner } from "../components/Spinner";
 
 const electron = window.require("electron");
 const video = electron.remote.require("./video");
@@ -47,12 +46,16 @@ export default function Actions({ path, setTags, image }) {
 	return (
 		<Wrapper>
 			<ButtonWrapper>
-				<Button onClick={onClickCreate} disabled={isCreatingVideo} err={err}>
-					{isCreatingVideo ? <Spinner size={"1.5rem"}></Spinner> : "Export Video"}
-				</Button>
+				<Button
+					onClick={onClickCreate}
+					disabled={isCreatingVideo}
+					err={err}
+					showSpinner={isCreatingVideo}
+					text="Export Video"
+				></Button>
 			</ButtonWrapper>
 			<ButtonWrapper>
-				<PrimaryButton onClick={() => setTags()}>Export Tags</PrimaryButton>
+				<PrimaryButton onClick={() => setTags()} text="Export Tags"></PrimaryButton>
 			</ButtonWrapper>
 		</Wrapper>
 	);
