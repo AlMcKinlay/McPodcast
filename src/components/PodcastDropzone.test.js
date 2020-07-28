@@ -1,6 +1,6 @@
 import React from "react";
 import { render } from "@testing-library/react";
-import Dropzone from "./Dropzone";
+import Dropzone from "./PodcastDropzone";
 
 test("renders dropzone text", () => {
 	const { getByText } = render(<Dropzone />);
