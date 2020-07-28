@@ -1,26 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import tw from "tailwind.macro";
 import styled from "styled-components";
+import { Button, PrimaryButton } from "../components/Buttons";
+import { sideEffect } from "../utils";
+import { Spinner } from "../components/Spinner";
 
 const electron = window.require("electron");
 const video = electron.remote.require("./video");
-
-const createVideo = (audioPath, image) => {
-	video.getVideo(audioPath, image.imageBuffer.toString("base64"));
-};
+const { dialog } = electron.remote;
 
 const ButtonWrapper = styled.div`
 	${tw`w-full`}
 	display: grid;
 	justify-items: center;
-`;
-
-const Button = styled.button`
-	${tw`font-bold py-2 px-4 border rounded w-1/2 self-center mb-3`};
-`;
-
-const PrimaryButton = styled(Button)`
-	${tw`bg-blue-500 hover:bg-blue-700 text-white border-blue-700`};
 `;
 
 const Wrapper = styled.div`
@@ -29,10 +21,35 @@ const Wrapper = styled.div`
 `;
 
 export default function Actions({ path, setTags, image }) {
+	const [isCreatingVideo, setIsCreatingVideo] = useState(false);
+	const [err, setErr] = useState(undefined);
+
+	const askForSaveLocation = () => {
+		return dialog.showSaveDialog();
+	};
+
+	const createVideo = (audioPath, image, filePath) => {
+		return video.getVideo(audioPath, image.imageBuffer.toString("base64"), filePath);
+	};
+
+	const onClickCreate = () => {
+		setErr(undefined);
+		askForSaveLocation()
+			.then(sideEffect(() => setIsCreatingVideo(true)))
+			.then(sideEffect(({ canceled }) => console.log(canceled)))
+			.then(({ canceled, filePath }) => (canceled ? Promise.reject("canceled") : filePath))
+			.then((filePath) => (filePath.includes(".mp4") ? filePath : `${filePath}.mp4`))
+			.then((filePath) => createVideo(path, image, filePath))
+			.catch((err) => setErr(err)) // TODO: show error message somewhere
+			.finally(() => setIsCreatingVideo(false));
+	};
+
 	return (
 		<Wrapper>
 			<ButtonWrapper>
-				<Button onClick={() => createVideo(path, image)}>Export Video</Button>
+				<Button onClick={onClickCreate} disabled={isCreatingVideo} err={err}>
+					{isCreatingVideo ? <Spinner size={"1.5rem"}></Spinner> : "Export Video"}
+				</Button>
 			</ButtonWrapper>
 			<ButtonWrapper>
 				<PrimaryButton onClick={() => setTags()}>Export Tags</PrimaryButton>

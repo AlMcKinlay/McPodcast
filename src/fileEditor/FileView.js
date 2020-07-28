@@ -32,11 +32,7 @@ export default function FileView({ file: { path } }) {
 			</div>
 			<RightPanel>
 				<div></div>
-				<Actions
-					path={path}
-					setTags={() => id3.setTags(path, tags)}
-					image={tags.image}
-				></Actions>
+				<Actions path={path} setTags={() => id3.setTags(path, tags)} image={tags.image}></Actions>
 			</RightPanel>
 		</Wrapper>
 	);

@@ -1,31 +1,38 @@
 const ffmpeg = require("fluent-ffmpeg");
 const fs = require("fs");
+const ffmpegStatic = require("ffmpeg-static-electron");
 
-exports.getVideo = (file, image) => {
-	fs.writeFile(
-		"tmpvideoimagefile.png",
-		image.split(";base64,").pop(),
-		{ encoding: "base64" },
-		function (err) {
-			console.log("File created");
-		}
-	);
-	var proc = ffmpeg()
-		.addInput(file)
-		.addInput("tmpvideoimagefile.png")
-		.loop(6348)
-		.fps(1)
-		.audioBitrate("256k")
-		.audioCodec("libmp3lame")
-		.audioChannels(2)
-		.on("end", function () {
-			console.log("file has been converted succesfully");
-		})
-		.on("error", function (err) {
-			console.log("an error happened: " + err.message);
-		})
-		.on("progress", function (progress) {
-			console.log("Processing: " + progress.percent + "% done");
-		})
-		.save(".\\test.mp4");
+ffmpeg.setFfmpegPath(ffmpegStatic.path);
+
+exports.getVideo = (audioPath, image, videoPath) => {
+	return new Promise((res, rej) => {
+		// Create temp album image
+		fs.writeFileSync("tmpvideoimagefile.png", image.split(";base64,").pop(), {
+			encoding: "base64",
+		});
+		ffmpeg()
+			.addInput(audioPath)
+			.addInput("tmpvideoimagefile.png")
+			.loop(6348)
+			.fps(1)
+			.audioBitrate("256k")
+			.audioCodec("libmp3lame")
+			.audioChannels(2)
+			.on("end", function () {
+				console.log("Finished");
+				// TODO: Delete the temp image
+				res();
+			})
+			.on("error", function (err) {
+				console.log(err);
+				// TODO: Delete the temp image
+				rej(err);
+			})
+			.on("progress", function (progress) {
+				// TODO: Send this info to the frontend
+				console.log(progress);
+				console.log("Processing: " + progress.percent + "% done");
+			})
+			.save(videoPath);
+	});
 };
