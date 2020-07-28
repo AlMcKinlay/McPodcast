@@ -1,9 +1,6 @@
 const ffmpeg = require("fluent-ffmpeg");
 const fs = require("fs");
 
-ffmpeg.setFfmpegPath(".\\ffmpeg");
-ffmpeg.setFfprobePath(".\\ffprobe");
-
 exports.getVideo = (file, image) => {
 	fs.writeFile(
 		"tmpvideoimagefile.png",
