@@ -7,11 +7,13 @@ const url = require("url");
 
 let mainWindow;
 
+process.env["ELECTRON_DISABLE_SECURITY_WARNINGS"] = "true";
+
 function createWindow() {
 	mainWindow = new BrowserWindow({
 		width: 1000,
 		height: 600,
-		webPreferences: { nodeIntegration: true },
+		webPreferences: { nodeIntegration: true, enableRemoteModule: true },
 	});
 
 	const startUrl =
