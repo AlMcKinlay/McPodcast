@@ -40,29 +40,17 @@ const Overlay = styled.div`
 `;
 
 export default function PodcastDropzone({ current, selectFile }) {
-	const onDrop = useCallback(
-		(acceptedFiles) => {
-			console.log(acceptedFiles);
-			selectFile(acceptedFiles[0]);
-		},
-		[selectFile]
-	);
+	const onDrop = useCallback((acceptedFiles) => selectFile(acceptedFiles[0]), [selectFile]);
 	const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
 	if (current) {
 		return (
 			<FullDropzone
 				{...getRootProps()}
-				background={
-					"url(data:image/jpeg;base64," +
-					current.imageBuffer.toString("base64") +
-					")"
-				}
+				background={"url(data:image/jpeg;base64," + current.imageBuffer.toString("base64") + ")"}
 			>
 				<input {...getInputProps()} />
-				<Overlay isDragActive={isDragActive}>
-					{isDragActive && "Drop new artwork here"}
-				</Overlay>
+				<Overlay isDragActive={isDragActive}>{isDragActive && "Drop new artwork here"}</Overlay>
 			</FullDropzone>
 		);
 	}

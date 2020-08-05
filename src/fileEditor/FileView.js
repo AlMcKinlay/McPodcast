@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import InfoView from "./infoView";
 import styled from "styled-components";
 import Actions from "./actions";
+import LogView from "./LogView";
 
 const electron = window.require("electron");
 const id3 = electron.remote.require("./id3");
@@ -31,7 +32,7 @@ export default function FileView({ file: { path } }) {
 				<p>Chapters: {tags.chapter?.length || 0}</p>
 			</div>
 			<RightPanel>
-				<div></div>
+				<LogView></LogView>
 				<Actions path={path} setTags={() => id3.setTags(path, tags)} image={tags.image}></Actions>
 			</RightPanel>
 		</Wrapper>

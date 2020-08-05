@@ -3,6 +3,7 @@ import tw from "tailwind.macro";
 import styled from "styled-components";
 import { Button, PrimaryButton } from "../components/Buttons";
 import { sideEffect } from "../utils";
+import { useStore } from "../store/store";
 
 const electron = window.require("electron");
 const video = electron.remote.require("./video");
@@ -22,6 +23,7 @@ const Wrapper = styled.div`
 export default function Actions({ path, setTags, image }) {
 	const [isCreatingVideo, setIsCreatingVideo] = useState(false);
 	const [err, setErr] = useState(undefined);
+	const { dispatch } = useStore();
 
 	const askForSaveLocation = () => {
 		return dialog.showSaveDialog();
@@ -31,15 +33,22 @@ export default function Actions({ path, setTags, image }) {
 		return video.getVideo(audioPath, image.imageBuffer.toString("base64"), filePath);
 	};
 
+	const log = (message) => dispatch({ type: "ADD_LOG", log: message });
+
 	const onClickCreate = () => {
+		dispatch({ type: "ADD_LOG", log: "Create video clicked" });
 		setErr(undefined);
 		askForSaveLocation()
 			.then(sideEffect(() => setIsCreatingVideo(true)))
-			.then(sideEffect(({ canceled }) => console.log(canceled)))
-			.then(({ canceled, filePath }) => (canceled ? Promise.reject("canceled") : filePath))
+			.then(({ canceled, filePath }) => (canceled ? Promise.reject() : filePath))
+			.then(sideEffect(() => log("Creating video")))
 			.then((filePath) => (filePath.includes(".mp4") ? filePath : `${filePath}.mp4`))
 			.then((filePath) => createVideo(path, image, filePath))
-			.catch((err) => setErr(err)) // TODO: show error message somewhere
+			.then(sideEffect(() => log("Create video finished")))
+			.catch((err) => {
+				setErr(err);
+				dispatch({ type: "ADD_LOG", log: err || "Create video cancelled" });
+			})
 			.finally(() => setIsCreatingVideo(false));
 	};
 

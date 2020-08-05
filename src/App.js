@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Dropzone from "./components/PodcastDropzone";
 import FileView from "./fileEditor/FileView";
 import styled from "styled-components";
+import { StoreProvider } from "./store/store";
 
 const Wrapper = styled.div`
 	width: 100vw;
@@ -13,13 +14,11 @@ function App() {
 	const [file, updateFile] = useState(undefined);
 
 	return (
-		<Wrapper className="App">
-			{file ? (
-				<FileView file={file}></FileView>
-			) : (
-				<Dropzone selectFile={updateFile}></Dropzone>
-			)}
-		</Wrapper>
+		<StoreProvider>
+			<Wrapper className="App">
+				{file ? <FileView file={file}></FileView> : <Dropzone selectFile={updateFile}></Dropzone>}
+			</Wrapper>
+		</StoreProvider>
 	);
 }
 
