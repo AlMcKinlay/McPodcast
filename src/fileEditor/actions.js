@@ -8,6 +8,7 @@ import { useStore } from "../store/store";
 const electron = window.require("electron");
 const video = electron.remote.require("./video");
 const { dialog } = electron.remote;
+const timestampFormat = "HH:MM:SS";
 
 const ButtonWrapper = styled.div`
 	${tw`w-full`}
@@ -20,7 +21,17 @@ const Wrapper = styled.div`
 	align-items: end;
 `;
 
-export default function Actions({ path, setTags, image }) {
+const timeToS = (time) => {
+	if (time === timestampFormat) {
+		return undefined;
+	}
+
+	const [h, m, s] = time.split(":");
+
+	return parseInt(h) * 60 * 60 + parseInt(m) * 60 + parseInt(s);
+};
+
+export default function Actions({ path, setTags, image, length }) {
 	const [isCreatingVideo, setIsCreatingVideo] = useState(false);
 	const [err, setErr] = useState(undefined);
 	const { dispatch } = useStore();
@@ -30,7 +41,13 @@ export default function Actions({ path, setTags, image }) {
 	};
 
 	const createVideo = (audioPath, image, filePath) => {
-		return video.getVideo(audioPath, image.imageBuffer.toString("base64"), filePath);
+		const seconds = timeToS(length);
+		if (seconds === undefined) {
+			setErr("No length for podcast set");
+			dispatch({ type: "ADD_LOG", log: err || "No length for podcast set" });
+			return;
+		}
+		return video.getVideo(audioPath, image.imageBuffer.toString("base64"), filePath, seconds);
 	};
 
 	const log = (message) => dispatch({ type: "ADD_LOG", log: message });
@@ -47,6 +64,7 @@ export default function Actions({ path, setTags, image }) {
 			.then(sideEffect(() => log("Create video finished")))
 			.catch((err) => {
 				setErr(err);
+				console.log(err);
 				dispatch({ type: "ADD_LOG", log: err || "Create video cancelled" });
 			})
 			.finally(() => setIsCreatingVideo(false));

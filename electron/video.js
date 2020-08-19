@@ -4,7 +4,7 @@ const ffmpegStatic = require("ffmpeg-static-electron");
 
 ffmpeg.setFfmpegPath(ffmpegStatic.path);
 
-exports.getVideo = (audioPath, image, videoPath) => {
+exports.getVideo = (audioPath, image, videoPath, length) => {
 	return new Promise((res, rej) => {
 		// Create temp album image
 		fs.writeFileSync("tmpvideoimagefile.png", image.split(";base64,").pop(), {
@@ -13,7 +13,7 @@ exports.getVideo = (audioPath, image, videoPath) => {
 		ffmpeg()
 			.addInput(audioPath)
 			.addInput("tmpvideoimagefile.png")
-			.loop(6348)
+			.loop(length)
 			.fps(1)
 			.audioBitrate("256k")
 			.audioCodec("libmp3lame")
