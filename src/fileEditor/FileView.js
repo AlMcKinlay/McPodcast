@@ -4,6 +4,8 @@ import styled from "styled-components";
 import Actions from "./actions";
 import LogView from "./LogView";
 
+import { msToTime } from "../utils";
+
 const electron = window.require("electron");
 const id3 = electron.remote.require("./id3");
 
@@ -30,10 +32,17 @@ export default function FileView({ file: { path } }) {
 			<InfoView info={tags} setInfo={(tags) => setTags(tags)}></InfoView>
 			<div>
 				<p>Chapters: {tags.chapter?.length || 0}</p>
+				<ul>
+					{tags.chapter.map((chapter) => (
+						<li>
+							{chapter.tags.title}: {msToTime(chapter.startTimeMs)} - {msToTime(chapter.endTimeMs)}
+						</li>
+					))}
+				</ul>
 			</div>
 			<RightPanel>
 				<LogView></LogView>
-				<Actions path={path} setTags={() => id3.setTags(path, tags)} image={tags.image}></Actions>
+				<Actions path={path} setTags={() => id3.setTags(path, tags)} image={tags.image} length={tags.length}></Actions>
 			</RightPanel>
 		</Wrapper>
 	);
