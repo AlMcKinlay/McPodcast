@@ -16,6 +16,5 @@
 		".prettierrc.json": true,
 		".gitignore": true
 	},
-	"explorerExclude.backup": null,
-	"editor.formatOnSave": true
+	"editor.defaultFormatter": "esbenp.prettier-vscode"
 }

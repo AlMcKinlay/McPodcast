@@ -12,10 +12,7 @@ const Wrapper = styled.div`
 export default function Artwork({ image, setImage }) {
 	return (
 		<Wrapper>
-			<Dropzone
-				current={image}
-				selectFile={(file) => setImage(imageTools.toBuffer(file.path))}
-			></Dropzone>
+			<Dropzone current={image} selectFile={(file) => setImage(imageTools.toBuffer(file.path))}></Dropzone>
 		</Wrapper>
 	);
 }
