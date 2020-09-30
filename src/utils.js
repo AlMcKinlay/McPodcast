@@ -1,9 +1,9 @@
-export const sideEffect = (fn) => (d) => {
+const sideEffect = (fn) => (d) => {
 	fn(d);
 	return d;
 };
 
-export const msToTime = (s) => {
+const msToTime = (s) => {
 	// Pad to 2 or 3 digits, default is 2
 	function pad(n, z) {
 		z = z || 2;
@@ -20,4 +20,9 @@ export const msToTime = (s) => {
 	var hrs = (s - mins) / 60;
 
 	return `${pad(hrs)}:${pad(mins)}:${pad(secs)}${ms ? `.${pad(ms, 3)}` : ""}`;
+};
+
+module.exports = {
+	sideEffect,
+	msToTime,
 };

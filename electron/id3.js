@@ -1,8 +1,7 @@
 const NodeID3 = require("node-id3");
+const msToTime = require("../src/utils").msToTime;
 
 const timestampFormat = "HH:MM:SS";
-
-import { msToTime } from "../src/utils";
 
 const timeToMS = (time) => {
 	if (time === timestampFormat) {
