@@ -1,6 +1,6 @@
 {
 	"name": "mcpodcast",
-	"version": "0.3.0",
+	"version": "0.3.2",
 	"main": "electron/index.js",
 	"dependencies": {
 		"@testing-library/jest-dom": "^5.0.0",
