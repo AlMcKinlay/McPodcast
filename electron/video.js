@@ -1,8 +1,8 @@
 const ffmpeg = require("fluent-ffmpeg");
 const fs = require("fs");
-const ffmpegStatic = require("ffmpeg-static-electron");
+const ffmpegStatic = require("ffmpeg-static");
 
-ffmpeg.setFfmpegPath(ffmpegStatic.path);
+ffmpeg.setFfmpegPath(ffmpegStatic);
 
 exports.getVideo = (audioPath, image, videoPath, length) => {
 	return new Promise((res, rej) => {
