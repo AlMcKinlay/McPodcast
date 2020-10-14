@@ -45,7 +45,8 @@
 			"main": "electron/index.js"
 		},
 		"files": [
-			"electron/**/*"
+			"electron/**/*",
+			"src/utils.js"
 		]
 	},
 	"eslintConfig": {
