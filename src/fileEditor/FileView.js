@@ -34,7 +34,7 @@ export default function FileView({ file: { path } }) {
 				<p>Chapters: {tags.chapter?.length || 0}</p>
 				<ul>
 					{tags.chapter.map((chapter) => (
-						<li>
+						<li key={chapter.tags.title}>
 							{chapter.tags.title}: {msToTime(chapter.startTimeMs)} - {msToTime(chapter.endTimeMs)}
 						</li>
 					))}
