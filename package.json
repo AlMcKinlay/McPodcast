@@ -47,6 +47,9 @@
 		"files": [
 			"electron/**/*",
 			"src/utils.js"
+		],
+		"asarUnpack": [
+			"**/app/node_modules/ffmpeg-static/*"
 		]
 	},
 	"eslintConfig": {
