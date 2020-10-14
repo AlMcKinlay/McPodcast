@@ -19,12 +19,10 @@ exports.getVideo = (audioPath, image, videoPath, length) => {
 			.audioCodec("libmp3lame")
 			.audioChannels(2)
 			.on("end", function () {
-				console.log("Finished");
 				// TODO: Delete the temp image
 				res();
 			})
 			.on("error", function (err) {
-				console.log(err);
 				// TODO: Delete the temp image
 				rej(err);
 			})

@@ -64,8 +64,13 @@ export default function Actions({ path, setTags, image, length }) {
 			.then(sideEffect(() => log("Create video finished")))
 			.catch((err) => {
 				setErr(err);
-				console.log(err);
-				dispatch({ type: "ADD_LOG", log: err || "Create video cancelled" });
+				if (typeof err === "object" && err !== null) {
+					log(err.message);
+				} else if (typeof err === "string") {
+					log(err);
+				} else {
+					log("Create video cancelled");
+				}
 			})
 			.finally(() => setIsCreatingVideo(false));
 	};

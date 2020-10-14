@@ -10,8 +10,6 @@ const msToTime = (s) => {
 		return ("00" + n).slice(-z);
 	}
 
-	console.log(s);
-
 	var ms = s % 1000;
 	s = (s - ms) / 1000;
 	var secs = s % 60;

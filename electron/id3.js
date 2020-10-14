@@ -14,9 +14,7 @@ const timeToMS = (time) => {
 };
 
 exports.getTags = (file) => {
-	console.log(file);
 	const tags = NodeID3.read(file);
-	console.log(tags);
 	delete tags.raw;
 
 	if (tags.length) {
@@ -26,10 +24,6 @@ exports.getTags = (file) => {
 };
 
 exports.setTags = (file, tags) => {
-	console.log(file);
-	console.log(tags);
-	console.log(tags.length);
-	console.log(timeToMS(tags.length));
 	if (tags.length && tags.length.includes(":")) {
 		tags.length = timeToMS(tags.length);
 	}
