@@ -20,7 +20,12 @@ const msToTime = (s) => {
 	return `${pad(hrs)}:${pad(mins)}:${pad(secs)}${ms ? `.${pad(ms, 3)}` : ""}`;
 };
 
+const stripMs = (time) => {
+	return time.split(".")[0];
+};
+
 module.exports = {
 	sideEffect,
 	msToTime,
+	stripMs,
 };

@@ -3,8 +3,9 @@ import InfoView from "./infoView";
 import styled from "styled-components";
 import Actions from "./actions";
 import LogView from "./LogView";
+import tw from "tailwind.macro";
 
-import { msToTime } from "../utils";
+import { msToTime, stripMs } from "../utils";
 
 const electron = window.require("electron");
 const id3 = electron.remote.require("./id3");
@@ -20,6 +21,30 @@ const RightPanel = styled.div`
 	grid-template-rows: 4fr 1fr;
 `;
 
+const ChapterPanel = styled.div`
+	${tw`overflow-auto max-h-full`};
+`;
+
+const Chapters = styled.ul`
+	${tw`list-none`};
+`;
+
+const ChaptersHeading = styled.h3`
+	${tw`p-0`};
+`;
+
+const Chapter = styled.li`
+	${tw`mt-4`};
+`;
+
+const ChapterTitle = styled.h4`
+	${tw`text-xl m-0`};
+`;
+
+const ChapterTimes = styled.p`
+	${tw`text-base m-0`};
+`;
+
 export default function FileView({ file: { path } }) {
 	const [tags, setTags] = useState(undefined);
 	if (tags === undefined) {
@@ -30,16 +55,20 @@ export default function FileView({ file: { path } }) {
 	return (
 		<Wrapper>
 			<InfoView info={tags} setInfo={(tags) => setTags(tags)}></InfoView>
-			<div>
-				<p>Chapters: {tags.chapter?.length || 0}</p>
-				<ul>
+			<ChapterPanel>
+				<Chapters>
+					<ChaptersHeading>Chapters: {tags.chapter?.length || 0}</ChaptersHeading>
 					{tags.chapter.map((chapter) => (
-						<li key={chapter.tags.title}>
-							{chapter.tags.title}: {msToTime(chapter.startTimeMs)} - {msToTime(chapter.endTimeMs)}
-						</li>
+						<Chapter key={chapter.tags.title}>
+							<ChapterTitle>{chapter.tags.title}</ChapterTitle>
+							<ChapterTimes>
+								{stripMs(msToTime(chapter.startTimeMs))} - {stripMs(msToTime(chapter.endTimeMs))}
+							</ChapterTimes>
+						</Chapter>
 					))}
-				</ul>
-			</div>
+				</Chapters>
+			</ChapterPanel>
+
 			<RightPanel>
 				<LogView></LogView>
 				<Actions path={path} setTags={() => id3.setTags(path, tags)} image={tags.image} length={tags.length}></Actions>
