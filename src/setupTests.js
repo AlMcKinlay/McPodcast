@@ -5,15 +5,13 @@
 import "@testing-library/jest-dom/extend-expect";
 
 window.require = (module) => {
-	{
-		if (module !== "electron") {
-			return require(module);
-		} else {
-			return {
-				remote: {
-					require: (electronModule) => require(`../electron/${electronModule}`),
-				},
-			};
-		}
+	if (module !== "electron") {
+		return require(module);
+	} else {
+		return {
+			remote: {
+				require: (electronModule) => require(`../electron/${electronModule}`),
+			},
+		};
 	}
 };
