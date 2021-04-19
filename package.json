@@ -14,7 +14,7 @@
 		"react-dropzone": "^11.0.1",
 		"react-scripts": "4.0.3",
 		"styled-components": "^5.1.1",
-		"tailwindcss": "^2.0.0"
+		"tailwindcss": "^2.0.1"
 	},
 	"scripts": {
 		"dev": "concurrently 'npm:react' 'npm:electron:dev'",
