@@ -6,7 +6,7 @@
 		"@testing-library/jest-dom": "^5.11.0",
 		"@testing-library/react": "^11.0.0",
 		"@testing-library/user-event": "^13.0.0",
-		"ffmpeg-static": "^4.2.7",
+		"ffmpeg-static": "^4.3.0",
 		"fluent-ffmpeg": "^2.1.2",
 		"node-id3": "^0.2.0",
 		"react": "^17.0.0",
