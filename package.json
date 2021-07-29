@@ -24,7 +24,8 @@
 		"build": "react-scripts build",
 		"test": "react-scripts test",
 		"eject": "react-scripts eject",
-		"postinstall": "electron-builder install-app-deps"
+		"postinstall": "electron-builder install-app-deps",
+		"prettier": "prettier . --write"
 	},
 	"build": {
 		"appId": "com.yamanickill.mcpodcast",
