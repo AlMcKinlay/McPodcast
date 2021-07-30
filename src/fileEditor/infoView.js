@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import tw from "twin.macro";
 import styled from "styled-components";
 import Artwork from "./artwork";
@@ -24,9 +24,11 @@ const Text = styled.input`
 `;
 
 export default function InfoView({ info, setInfo }) {
-	if (!info.encodedBy) {
-		info.encodedBy = "McPodcast";
-	}
+	useEffect(() => {
+		if (!info.encodedBy) {
+			info.encodedBy = "McPodcast";
+		}
+	});
 	return (
 		<Form>
 			<Wrapper>
