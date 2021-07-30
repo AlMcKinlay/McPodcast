@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import tw from "tailwind.macro";
+import tw from "twin.macro";
 import styled from "styled-components";
 import { Button, PrimaryButton } from "../components/Buttons";
 import { sideEffect } from "../utils";

@@ -1,5 +1,5 @@
 import React from "react";
-import tw from "tailwind.macro";
+import tw from "twin.macro";
 import styled from "styled-components";
 import Artwork from "./artwork";
 

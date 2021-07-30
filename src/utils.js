@@ -1,3 +1,5 @@
+const timestampFormat = "HH:MM:SS";
+
 const sideEffect = (fn) => (d) => {
 	fn(d);
 	return d;
@@ -20,6 +22,16 @@ const msToTime = (s) => {
 	return `${pad(hrs)}:${pad(mins)}:${pad(secs)}${ms ? `.${pad(ms, 3)}` : ""}`;
 };
 
+const timeToMS = (time) => {
+	if (time === timestampFormat) {
+		return undefined;
+	}
+
+	const [h, m, s] = time.split(":");
+
+	return (parseInt(h) * 60 * 60 + parseInt(m) * 60 + parseInt(s)) * 1000;
+};
+
 const stripMs = (time) => {
 	return time.split(".")[0];
 };
@@ -28,4 +40,5 @@ module.exports = {
 	sideEffect,
 	msToTime,
 	stripMs,
+	timeToMS,
 };

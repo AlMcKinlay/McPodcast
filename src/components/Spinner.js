@@ -1,5 +1,5 @@
 import styled, { keyframes } from "styled-components";
-import tw from "tailwind.macro";
+import tw from "twin.macro";
 
 // Create the keyframes
 const rotate = keyframes`

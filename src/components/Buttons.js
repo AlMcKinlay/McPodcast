@@ -1,5 +1,5 @@
 import React from "react";
-import tw from "tailwind.macro";
+import tw from "twin.macro";
 import styled from "styled-components";
 import { Spinner } from "../components/Spinner";
 
@@ -8,7 +8,7 @@ const ButtonSpinner = styled(Spinner)`
 `;
 
 const ButtonStyle = styled.button`
-	${tw`font-bold py-2 px-4 border rounded w-1/2 self-center mb-3`};
+	${tw`font-bold py-2 px-4 border rounded self-center mb-3`};
 	${(props) => props.err && props.err !== "canceled" && "border: red;"}
 `;
 

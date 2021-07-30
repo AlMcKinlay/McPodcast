@@ -1,17 +1,6 @@
 const NodeID3 = require("node-id3");
 const msToTime = require("../src/utils").msToTime;
-
-const timestampFormat = "HH:MM:SS";
-
-const timeToMS = (time) => {
-	if (time === timestampFormat) {
-		return undefined;
-	}
-
-	const [h, m, s] = time.split(":");
-
-	return (parseInt(h) * 60 * 60 + parseInt(m) * 60 + parseInt(s)) * 1000;
-};
+const timeToMS = require("../src/utils").timeToMS;
 
 exports.getTags = (file) => {
 	const tags = NodeID3.read(file);
