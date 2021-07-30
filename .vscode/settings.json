@@ -1,20 +1,19 @@
 {
 	"files.exclude": {
-		"**/.git": true,
-		"**/.svn": true,
-		"**/.hg": true,
-		"**/CVS": true,
+		".gitignore": true,
+		".prettierignore": true,
+		".prettierrc.json": true,
+		".vscode": true,
 		"**/.DS_Store": true,
+		"**/.git": true,
+		"**/.hg": true,
+		"**/.svn": true,
+		"**/CVS": true,
 		"build": true,
 		"dist": true,
 		"LICENSE": true,
-		"yarn.lock": true,
-		".github": true,
-		".vscode": true,
 		"node_modules": true,
-		".prettierignore": true,
-		".prettierrc.json": true,
-		".gitignore": true
+		"yarn.lock": true
 	},
 	"editor.defaultFormatter": "esbenp.prettier-vscode"
 }
