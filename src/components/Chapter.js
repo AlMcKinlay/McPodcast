@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import tw from "twin.macro";
-
-import { msToTime, stripMs, timeToMS } from "../utils";
 import { Button } from "./Buttons";
+
+const { msToTime, timeToMS, stripMs } = require("../utils");
 
 const Wrapper = styled.li`
 	${tw`mt-4 grid grid-flow-row gap-3`};
