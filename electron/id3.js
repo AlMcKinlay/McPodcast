@@ -1,14 +1,21 @@
 const NodeID3 = require("node-id3");
 const msToTime = require("../src/utils").msToTime;
 const timeToMS = require("../src/utils").timeToMS;
+const mp3Duration = require("mp3-duration");
 
-exports.getTags = (file) => {
+exports.getTags = async (file) => {
 	const tags = NodeID3.read(file);
 	delete tags.raw;
 
+	console.log(tags.length);
 	if (tags.length) {
 		tags.length = msToTime(tags.length);
+	} else {
+		const seconds = await mp3Duration(file);
+		console.log(msToTime(seconds * 1000));
+		tags.length = msToTime(seconds * 1000);
 	}
+
 	return tags;
 };
 

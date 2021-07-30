@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import InfoView from "./infoView";
 import styled from "styled-components";
 import Actions from "./actions";
@@ -21,15 +21,20 @@ const RightPanel = styled.div`
 
 export default function FileView({ file: { path } }) {
 	const [tags, setTags] = useState(undefined);
-	if (!tags) {
-		setTags({ title: "", chapter: [] });
-	}
-	if (tags === undefined) {
-		setTags(id3.getTags(path) || {});
-		return <div>Loading...</div>;
-	}
 
-	return (
+	useEffect(() => {
+		async function getTags() {
+			let newTags = await id3.getTags(path);
+			console.log(newTags);
+			setTags(newTags || {});
+		}
+
+		if (tags === undefined) {
+			getTags();
+		}
+	}, [tags, path]);
+
+	return tags ? (
 		<Wrapper>
 			<InfoView info={tags} setInfo={(tags) => setTags(tags)}></InfoView>
 			<ChapterPanel
@@ -42,5 +47,7 @@ export default function FileView({ file: { path } }) {
 				<Actions path={path} setTags={() => id3.setTags(path, tags)} image={tags.image} length={tags.length}></Actions>
 			</RightPanel>
 		</Wrapper>
+	) : (
+		<div>Loading...</div>
 	);
 }
