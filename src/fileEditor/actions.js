@@ -37,7 +37,7 @@ export default function Actions({ path, setTags, image, length }) {
 	const { dispatch } = useStore();
 
 	const askForSaveLocation = () => {
-		return dialog.showSaveDialog();
+		return dialog.showSaveDialog(null, { defaultPath: path.replace(".mp3", ".mp4") });
 	};
 
 	const createVideo = (audioPath, image, filePath) => {
