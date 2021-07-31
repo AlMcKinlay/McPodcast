@@ -26,9 +26,10 @@ const Text = styled.input`
 export default function InfoView({ info, setInfo }) {
 	useEffect(() => {
 		if (!info.encodedBy) {
-			info.encodedBy = "McPodcast";
+			setInfo({ ...info, encodedBy: "McPodcast" });
 		}
-	});
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
 	return (
 		<Form>
 			<Wrapper>
