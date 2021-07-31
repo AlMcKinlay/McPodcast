@@ -3,7 +3,8 @@ import styled from "styled-components";
 import tw from "twin.macro";
 import { Button } from "./Buttons";
 
-const { msToTime, timeToMS, stripMs } = require("../utils");
+const electron = window.require("electron");
+const { msToTime, timeToMS, stripMs } = electron.remote.require("./utils");
 
 const Wrapper = styled.li`
 	${tw`mt-4 grid grid-flow-row gap-3`};

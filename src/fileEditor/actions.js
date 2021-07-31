@@ -4,9 +4,9 @@ import styled from "styled-components";
 import { Button, PrimaryButton } from "../components/Buttons";
 import { useStore } from "../store/store";
 
-const { sideEffect } = require("../utils");
 const electron = window.require("electron");
 const video = electron.remote.require("./video");
+const { sideEffect } = electron.remote.require("./utils");
 const { dialog } = electron.remote;
 const timestampFormat = "HH:MM:SS";
 

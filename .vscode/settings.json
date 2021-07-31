@@ -9,8 +9,6 @@
 		"**/.hg": true,
 		"**/.svn": true,
 		"**/CVS": true,
-		"build": true,
-		"dist": true,
 		"LICENSE": true,
 		"node_modules": true,
 		"yarn.lock": true
