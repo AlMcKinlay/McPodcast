@@ -3,7 +3,7 @@ import InfoView from "./infoView";
 import styled from "styled-components";
 import Actions from "./actions";
 import LogView from "./LogView";
-import ChapterPanel from "../components/ChapterPanel";
+import ChapterPanel from "./ChapterPanel";
 
 const electron = window.require("electron");
 const id3 = electron.remote.require("./id3");
@@ -16,7 +16,9 @@ const Wrapper = styled.div`
 
 const RightPanel = styled.div`
 	display: grid;
-	grid-template-rows: 4fr 1fr;
+	grid-template-rows: 1fr min-content;
+	max-height: 100%;
+	overflow: auto;
 `;
 
 export default function FileView({ file: { path } }) {
@@ -44,7 +46,13 @@ export default function FileView({ file: { path } }) {
 
 			<RightPanel>
 				<LogView></LogView>
-				<Actions path={path} setTags={() => id3.setTags(path, tags)} image={tags.image} length={tags.length}></Actions>
+				<Actions
+					path={path}
+					setTags={() => id3.setTags(path, tags)}
+					image={tags.image}
+					length={tags.length}
+					chapters={tags.chapter}
+				></Actions>
 			</RightPanel>
 		</Wrapper>
 	) : (

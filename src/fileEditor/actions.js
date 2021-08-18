@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Modal from "react-modal";
 import tw from "twin.macro";
 import styled from "styled-components";
 import { Button, PrimaryButton } from "../components/Buttons";
@@ -6,7 +7,7 @@ import { useStore } from "../store/store";
 
 const electron = window.require("electron");
 const video = electron.remote.require("./video");
-const { sideEffect } = electron.remote.require("./utils");
+const { sideEffect, msToTime, stripMs } = electron.remote.require("./utils");
 const { dialog } = electron.remote;
 const timestampFormat = "HH:MM:SS";
 
@@ -31,9 +32,12 @@ const timeToS = (time) => {
 	return parseInt(h) * 60 * 60 + parseInt(m) * 60 + parseInt(s);
 };
 
-export default function Actions({ path, setTags, image, length }) {
+Modal.setAppElement("#root");
+
+export default function Actions({ path, setTags, image, length, chapters }) {
 	const [isCreatingVideo, setIsCreatingVideo] = useState(false);
 	const [err, setErr] = useState(undefined);
+	const [modalOpen, setModalOpen] = useState(false);
 	const { dispatch } = useStore();
 
 	const askForSaveLocation = () => {
@@ -52,7 +56,7 @@ export default function Actions({ path, setTags, image, length }) {
 
 	const log = (message) => dispatch({ type: "ADD_LOG", log: message });
 
-	const onClickCreate = () => {
+	const onClickCreateVideo = () => {
 		dispatch({ type: "ADD_LOG", log: "Create video clicked" });
 		setErr(undefined);
 		askForSaveLocation()
@@ -78,16 +82,25 @@ export default function Actions({ path, setTags, image, length }) {
 	return (
 		<Wrapper>
 			<ButtonWrapper>
+				<Button onClick={() => setModalOpen(true)} text="Export Chapters"></Button>
+				<Modal isOpen={modalOpen} onRequestClose={() => setModalOpen(false)} contentLabel="Example Modal">
+					<h2>Chapters</h2>
+
+					<pre>{chapters?.map((chapter) => `[${stripMs(msToTime(chapter.startTimeMs))}] ${chapter.tags.title}\n`)}</pre>
+					<button onClick={() => setModalOpen(false)}>Close</button>
+				</Modal>
+			</ButtonWrapper>
+			<ButtonWrapper>
 				<Button
-					onClick={onClickCreate}
+					onClick={onClickCreateVideo}
 					disabled={isCreatingVideo}
 					err={err}
 					showSpinner={isCreatingVideo}
-					text="Export Video"
+					text="Create Video"
 				></Button>
 			</ButtonWrapper>
 			<ButtonWrapper>
-				<PrimaryButton onClick={() => setTags()} text="Export Tags"></PrimaryButton>
+				<PrimaryButton onClick={() => setTags()} text="Save Tags"></PrimaryButton>
 			</ButtonWrapper>
 		</Wrapper>
 	);

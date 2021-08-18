@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import tw from "twin.macro";
-import Chapter from "./Chapter";
-import { Button } from "./Buttons";
+import Chapter from "../components/Chapter";
+import { Button } from "../components/Buttons";
 
 const Wrapper = styled.div`
 	${tw`overflow-auto max-h-full`};
