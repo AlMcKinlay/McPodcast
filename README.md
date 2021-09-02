@@ -15,7 +15,7 @@ A small electron app for a number of administration tasks around Podcast mp3 fil
 
 ## Installing
 
-- Download file from latest [release](https://github.com/McInkay/McPodcast/releases).
+- Download file from latest [release](https://github.com/McInkay/McPodcast/releases/latest).
 - Install file. (**Note: the files are unsigned. Your operating system may complain about it being "unsafe". Ignore this.**)
   - On Windows, install `McPodcast-Setup-*.exe` file
   - On Mac OS, install `McPodcast-*.dmg` file
