@@ -62,6 +62,7 @@ export default function ChapterPanel({ chapters, setChapters }) {
 						key={chapter.elementID}
 						updateChapter={updateChapter(index)}
 						cancelEditing={cancelEditing(index)}
+						setEditing={() => setEditingChapter(chapter.elementID)}
 					></Chapter>
 				))}
 
