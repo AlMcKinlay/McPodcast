@@ -24,7 +24,7 @@ export default function ChapterPanel({ chapters, setChapters }) {
 	const [editingChapter, setEditingChapter] = useState(null);
 	const addChapter = () => {
 		const newChapters = chapters ? [...chapters] : [];
-		const startTimeMs = chapters.length > 0 ? chapters[chapters.length - 1].endTimeMs : 0;
+		const startTimeMs = newChapters.length > 0 ? newChapters[newChapters.length - 1].endTimeMs : 0;
 		newChapters.push({
 			elementID: `Ch${newChapters.length + 1}`,
 			startTimeMs,
