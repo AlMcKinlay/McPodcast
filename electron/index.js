@@ -14,6 +14,7 @@ function createWindow() {
 		width: 1000,
 		height: 600,
 		webPreferences: { nodeIntegration: true, enableRemoteModule: true, contextIsolation: false },
+		title: "McPodcast - A Podcast Management App",
 	});
 
 	const startUrl =
