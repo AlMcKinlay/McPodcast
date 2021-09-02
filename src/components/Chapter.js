@@ -9,11 +9,11 @@ const electron = window.require("electron");
 const { msToTime, timeToMS, stripMs } = electron.remote.require("./utils");
 
 const Wrapper = styled.li`
-	${tw`mt-4 grid grid-cols-5 items-center`};
+	${tw`mt-4 grid grid-cols-10 items-center`};
 `;
 
 const InfoWrapper = styled.div`
-	${tw`col-span-4 grid grid-flow-row gap-1`};
+	${tw`col-span-9 grid grid-flow-row gap-1`};
 `;
 
 const ChapterTitle = styled.h4`
@@ -35,7 +35,7 @@ const Text = styled.input`
 `;
 
 const EditButton = styled(FontAwesomeIcon)`
-	${tw`cursor-pointer`};
+	${tw`cursor-pointer justify-self-end`};
 `;
 
 export default function Chapter({ chapter, editing, updateChapter, cancelEditing, setEditing }) {
