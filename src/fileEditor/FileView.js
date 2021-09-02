@@ -4,6 +4,7 @@ import styled from "styled-components";
 import Actions from "./actions";
 import LogView from "./LogView";
 import ChapterPanel from "./ChapterPanel";
+import tw from "twin.macro";
 
 const electron = window.require("electron");
 const id3 = electron.remote.require("./id3");
@@ -19,6 +20,7 @@ const RightPanel = styled.div`
 	grid-template-rows: 1fr min-content;
 	max-height: 100%;
 	overflow: auto;
+	${tw`mb-3`};
 `;
 
 export default function FileView({ file: { path } }) {
@@ -27,7 +29,6 @@ export default function FileView({ file: { path } }) {
 	useEffect(() => {
 		async function getTags() {
 			let newTags = await id3.getTags(path);
-			console.log(newTags);
 			setTags(newTags || {});
 		}
 

@@ -8,7 +8,7 @@ const ButtonSpinner = styled(Spinner)`
 `;
 
 const ButtonStyle = styled.button`
-	${tw`font-bold py-2 px-4 border rounded self-center mb-3`};
+	${tw`font-bold py-2 px-4 border rounded self-center mt-3`};
 	${(props) => props.err && props.err !== "canceled" && "border: red;"}
 `;
 

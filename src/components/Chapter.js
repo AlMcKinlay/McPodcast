@@ -7,11 +7,11 @@ const electron = window.require("electron");
 const { msToTime, timeToMS, stripMs } = electron.remote.require("./utils");
 
 const Wrapper = styled.li`
-	${tw`mt-4 grid grid-flow-row gap-3`};
+	${tw`mt-4 grid grid-flow-row gap-1`};
 `;
 
 const ChapterTitle = styled.h4`
-	${tw`text-xl m-0`};
+	${tw`m-0`};
 `;
 
 const ChapterTimes = styled.div`
@@ -68,9 +68,7 @@ export default function Chapter({ chapter, editing, updateChapter, cancelEditing
 						/>
 					</Row>
 				) : (
-					<p>
-						{startTime} - {endTime}
-					</p>
+					`${startTime} - ${endTime}`
 				)}
 			</ChapterTimes>
 			{editing && (

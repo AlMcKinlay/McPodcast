@@ -50,7 +50,7 @@ export default function ChapterPanel({ chapters, setChapters }) {
 	return (
 		<Wrapper>
 			<ChapterList>
-				<ChaptersHeading>Chapters: {chapters?.length || 0}</ChaptersHeading>
+				<ChaptersHeading>Chapters:</ChaptersHeading>
 				{chapters?.map((chapter, index) => (
 					<Chapter
 						chapter={chapter}
