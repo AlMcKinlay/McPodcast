@@ -16,6 +16,10 @@ const ChaptersHeading = styled.h3`
 	${tw`p-0`};
 `;
 
+const Buttons = styled.div`
+	${tw`grid grid-cols-2`};
+`;
+
 export default function ChapterPanel({ chapters, setChapters }) {
 	const [editingChapter, setEditingChapter] = useState(null);
 	const addChapter = () => {
@@ -61,7 +65,7 @@ export default function ChapterPanel({ chapters, setChapters }) {
 					></Chapter>
 				))}
 
-				{editingChapter === null && <Button onClick={addChapter} text="Add Chapter"></Button>}
+				<Buttons>{editingChapter === null && <Button onClick={addChapter} text="Add Chapter"></Button>}</Buttons>
 			</ChapterList>
 		</Wrapper>
 	);
