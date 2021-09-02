@@ -13,7 +13,7 @@ const Wrapper = styled.li`
 `;
 
 const InfoWrapper = styled.div`
-	${tw`col-span-9 grid grid-flow-row gap-1`};
+	${tw`col-span-8 grid grid-flow-row gap-1`};
 `;
 
 const ChapterTitle = styled.h4`
@@ -44,6 +44,7 @@ export default function Chapter({ chapter, editing, updateChapter, cancelEditing
 	const [title, setTitle] = useState(chapter.tags.title);
 	return (
 		<Wrapper key={chapter.elementID}>
+			<div>{chapter.elementID}</div>
 			<InfoWrapper>
 				<ChapterTitle>
 					{editing ? (
