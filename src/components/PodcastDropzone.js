@@ -10,6 +10,7 @@ const Dropzone = styled.div`
 	display: grid;
 	justify-items: center;
 	align-items: center;
+	text-align: center;
 `;
 
 export default function PodcastDropzone({ selectFile }) {
@@ -19,7 +20,10 @@ export default function PodcastDropzone({ selectFile }) {
 	return (
 		<Dropzone {...getRootProps()}>
 			<input {...getInputProps()} />
-			{isDragActive ? "Drop it here ..." : "Drop an mp3 file, or click here to select one."}
+			<div>
+				<h1>Welcome to McPodcast</h1>
+				{isDragActive ? "Drop it here ..." : "Drop an mp3 file, or click here to select one."}
+			</div>
 		</Dropzone>
 	);
 }
