@@ -39,7 +39,7 @@ const Overlay = styled.div`
 	align-items: center;
 `;
 
-export default function PodcastDropzone({ current, selectFile }) {
+export default function ArtworkDropzone({ current, selectFile }) {
 	const onDrop = useCallback((acceptedFiles) => selectFile(acceptedFiles[0]), [selectFile]);
 	const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 

@@ -3,11 +3,12 @@ import Dropzone from "./components/PodcastDropzone";
 import FileView from "./fileEditor/FileView";
 import styled from "styled-components";
 import { StoreProvider } from "./store/store";
+import tw from "twin.macro";
 
 const Wrapper = styled.div`
 	width: 100vw;
 	height: 100vh;
-	padding: 10px;
+	${tw`p-3`};
 `;
 
 function App() {

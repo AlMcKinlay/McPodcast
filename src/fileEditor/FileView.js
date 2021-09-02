@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import InfoView from "./infoView";
+import InfoPanel from "./InfoPanel";
 import styled from "styled-components";
-import Actions from "./actions";
+import ActionsPanel from "./ActionsPanel";
 import LogView from "./LogView";
 import ChapterPanel from "./ChapterPanel";
 import tw from "twin.macro";
@@ -39,21 +39,18 @@ export default function FileView({ file: { path } }) {
 
 	return tags ? (
 		<Wrapper>
-			<InfoView info={tags} setInfo={(tags) => setTags(tags)}></InfoView>
-			<ChapterPanel
-				chapters={tags.chapter}
-				setChapters={(newChapters) => setTags({ ...tags, chapter: newChapters })}
-			></ChapterPanel>
+			<InfoPanel info={tags} setInfo={(tags) => setTags(tags)}></InfoPanel>
+			<ChapterPanel chapters={tags.chapter} setChapters={(newChapters) => setTags({ ...tags, chapter: newChapters })} />
 
 			<RightPanel>
-				<LogView></LogView>
-				<Actions
+				<LogView />
+				<ActionsPanel
 					path={path}
 					setTags={() => id3.setTags(path, tags)}
 					image={tags.image}
 					length={tags.length}
 					chapters={tags.chapter}
-				></Actions>
+				/>
 			</RightPanel>
 		</Wrapper>
 	) : (

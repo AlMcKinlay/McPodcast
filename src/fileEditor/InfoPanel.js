@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import tw from "twin.macro";
 import styled from "styled-components";
-import Artwork from "./artwork";
+import Artwork from "../components/Artwork";
 
 const timestampFormat = "HH:MM:SS";
 
@@ -23,7 +23,7 @@ const Text = styled.input`
 	${tw`appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white`};
 `;
 
-export default function InfoView({ info, setInfo }) {
+export default function InfoPanel({ info, setInfo }) {
 	useEffect(() => {
 		if (!info.encodedBy) {
 			setInfo({ ...info, encodedBy: "McPodcast" });

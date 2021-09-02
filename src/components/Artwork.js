@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Dropzone from "../components/ArtworkDropzone";
+import ArtworkDropzone from "./ArtworkDropzone";
 
 const electron = window.require("electron");
 const imageTools = electron.remote.require("./image");
@@ -12,7 +12,7 @@ const Wrapper = styled.div`
 export default function Artwork({ image, setImage }) {
 	return (
 		<Wrapper>
-			<Dropzone current={image} selectFile={(file) => setImage(imageTools.toBuffer(file.path))}></Dropzone>
+			<ArtworkDropzone current={image} selectFile={(file) => setImage(imageTools.toBuffer(file.path))} />
 		</Wrapper>
 	);
 }

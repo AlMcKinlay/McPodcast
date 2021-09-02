@@ -34,7 +34,7 @@ const timeToS = (time) => {
 
 Modal.setAppElement("#root");
 
-export default function Actions({ path, setTags, image, length, chapters }) {
+export default function ActionsPanel({ path, setTags, image, length, chapters }) {
 	const [isCreatingVideo, setIsCreatingVideo] = useState(false);
 	const [err, setErr] = useState(undefined);
 	const [modalOpen, setModalOpen] = useState(false);
