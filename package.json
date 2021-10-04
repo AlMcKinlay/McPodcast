@@ -77,7 +77,7 @@
 		]
 	},
 	"devDependencies": {
-		"concurrently": "6.2.2",
+		"concurrently": "6.3.0",
 		"cross-env": "7.0.3",
 		"electron": "13.5.1",
 		"electron-builder": "22.11.7",
