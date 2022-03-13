@@ -5,8 +5,7 @@ import { Button } from "./Buttons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
 
-const electron = window.require("electron");
-const { msToTime, timeToMS, stripMs } = electron.remote.require("./utils");
+const { msToTime, timeToMS, stripMs } = require("../shared/utils");
 
 const Wrapper = styled.li`
 	${tw`mt-4 grid grid-cols-10 items-center`};

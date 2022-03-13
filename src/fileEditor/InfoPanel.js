@@ -42,6 +42,7 @@ export default function InfoPanel({ info, setInfo }) {
 								mime: "jpeg",
 								type: { id: 3, name: "front cover" },
 								imageBuffer: base64,
+								base64: base64,
 							},
 						})
 					}

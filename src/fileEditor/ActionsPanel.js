@@ -5,10 +5,7 @@ import styled from "styled-components";
 import { Button, PrimaryButton } from "../components/Buttons";
 import { useStore } from "../store/store";
 
-const electron = window.require("electron");
-const video = electron.remote.require("./video");
-const { sideEffect, msToTime, stripMs } = electron.remote.require("./utils");
-const { dialog } = electron.remote;
+const { sideEffect, msToTime, stripMs } = require("../shared/utils");
 const timestampFormat = "HH:MM:SS";
 
 const ButtonWrapper = styled.div`
@@ -40,10 +37,6 @@ export default function ActionsPanel({ path, setTags, image, length, chapters })
 	const [modalOpen, setModalOpen] = useState(false);
 	const { dispatch } = useStore();
 
-	const askForSaveLocation = () => {
-		return dialog.showSaveDialog(null, { defaultPath: path.replace(".mp3", ".mp4") });
-	};
-
 	const createVideo = (audioPath, image, filePath) => {
 		const seconds = timeToS(length);
 		if (seconds === undefined) {
@@ -51,7 +44,7 @@ export default function ActionsPanel({ path, setTags, image, length, chapters })
 			dispatch({ type: "ADD_LOG", log: err || "No length for podcast set" });
 			return;
 		}
-		return video.getVideo(audioPath, image.imageBuffer.toString("base64"), filePath, seconds);
+		return window.electronAPI.getVideo(audioPath, image.base64, filePath, seconds);
 	};
 
 	const log = (message) => dispatch({ type: "ADD_LOG", log: message });
@@ -59,7 +52,8 @@ export default function ActionsPanel({ path, setTags, image, length, chapters })
 	const onClickCreateVideo = () => {
 		dispatch({ type: "ADD_LOG", log: "Create video clicked" });
 		setErr(undefined);
-		askForSaveLocation()
+		window.electronAPI
+			.askForSaveLocation(path)
 			.then(sideEffect(() => setIsCreatingVideo(true)))
 			.then(({ canceled, filePath }) => (canceled ? Promise.reject() : filePath))
 			.then(sideEffect(() => log("Creating video, this can take a long time.")))

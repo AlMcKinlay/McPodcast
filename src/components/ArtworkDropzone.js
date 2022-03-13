@@ -45,10 +45,7 @@ export default function ArtworkDropzone({ current, selectFile }) {
 
 	if (current) {
 		return (
-			<FullDropzone
-				{...getRootProps()}
-				background={"url(data:image/jpeg;base64," + current.imageBuffer.toString("base64") + ")"}
-			>
+			<FullDropzone {...getRootProps()} background={`url(data:image/jpeg;base64,${current.base64})`}>
 				<input {...getInputProps()} />
 				<Overlay isDragActive={isDragActive}>{isDragActive && "Drop new artwork here"}</Overlay>
 			</FullDropzone>
