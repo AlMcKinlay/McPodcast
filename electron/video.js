@@ -7,7 +7,7 @@ ffmpeg.setFfmpegPath(ffmpegStatic);
 exports.getVideo = (audioPath, image, videoPath, length) => {
 	return new Promise((res, rej) => {
 		// Create temp album image
-		fs.writeFileSync("tmpvideoimagefile.png", image.split(";base64,").pop(), {
+		fs.writeFileSync("tmpvideoimagefile.png", image.toString("base64").split(";base64,").pop(), {
 			encoding: "base64",
 		});
 		ffmpeg()
