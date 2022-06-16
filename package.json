@@ -82,7 +82,7 @@
 		"cross-env": "7.0.3",
 		"electron": "18.3.4",
 		"electron-builder": "23.0.3",
-		"prettier": "2.7.0"
+		"prettier": "2.7.1"
 	},
 	"homepage": "./"
 }
