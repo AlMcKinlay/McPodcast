@@ -22,7 +22,7 @@
 		"react-scripts": "5.0.1",
 		"styled-components": "^5.1.1",
 		"tailwindcss": "^3.0.0",
-		"twin.macro": "^2.6.2"
+		"twin.macro": "^3.0.0"
 	},
 	"scripts": {
 		"dev": "concurrently 'npm:react' 'npm:electron:dev'",
